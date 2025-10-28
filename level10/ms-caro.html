@@ -2,10 +2,172 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Responsive Gradient Gallery</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Fancybox CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
+
+    <!-- Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!-- Confetti JS -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+      body {
+        /* background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); */
+        background: linear-gradient(
+          135deg,
+          #0a192f 0%,
+          #112240 40%,
+          #1d3557 100%
+        );
+        color: white;
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      .gallery-title {
+        text-align: center;
+        margin-top: 50px;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 600;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        letter-spacing: 1px;
+      }
+
+      .gallery-container {
+        padding: 50px 10px;
+      }
+
+      .gallery-item {
+        overflow: hidden;
+        border-radius: 20px;
+        position: relative;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        animation: fadeInUp 0.8s ease;
+        cursor: pointer;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        /* height: auto;
+        max-height: 280px; */
+        /* object-fit: cover; */
+        border-radius: 20px;
+        transition: transform 0.5s ease, filter 0.4s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1) rotate(1.2deg);
+        filter: brightness(1.15);
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      footer {
+        text-align: center;
+        padding: 25px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      @media (max-width: 576px) {
+        .gallery-container {
+          padding: 30px 10px;
+        }
+      }
+    </style>
   </head>
+
   <body>
-    <h1>Caro</h1>
+    <h1 class="gallery-title animate__animated animate__fadeInDown">
+      🌟Meet The Latest Level 10 Achiever🌟
+    </h1>
+
+    <div class="container gallery-container">
+      <div class="row g-4 justify-content-center">
+        <!-- Gallery Item -->
+        <div class="col-lg-4 col-md-6 col-sm-10">
+          <div class="gallery-item">
+            <a data-fancybox="gallery" href="../img/mscaro.jpg">
+              <img src="../img/mscaro.jpg" alt="Gallery Image 2" />
+            </a>
+          </div>
+          <h3 class="text-center text-uppercase mt-2">Karunwi Taiwo Jibola</h3>
+          <p class="text-center">Latest Level 10 Achiever in Metawhale</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Confetti + Fancybox init -->
+    <script>
+      // Confetti animation
+      function launchConfetti() {
+        const duration = 2.5 * 1000;
+        const end = Date.now() + duration;
+
+        (function frame() {
+          confetti({
+            particleCount: 4,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+          });
+          confetti({
+            particleCount: 4,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+          });
+          if (Date.now() < end) requestAnimationFrame(frame);
+        })();
+      }
+
+      window.onload = launchConfetti;
+
+      // Fancybox Setup
+      // Fancybox.bind("[data-fancybox='gallery']", {
+      //   Thumbs: false,
+      //   Toolbar: {
+      //     display: ["close"],
+      //   },
+      //   animated: true,
+      //   dragToClose: true,
+      //   showClass: "fancybox-zoomInUp",
+      //   hideClass: "fancybox-fadeOut",
+      // });
+    </script>
   </body>
 </html>
